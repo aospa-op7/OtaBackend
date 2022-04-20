@@ -22,13 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-6t=ib$mm$)1%&bb8i81-0s0*h%@8)1=nd#_xji*zupc65#%9q$')
+SECRET_KEY = os.getenv('SECRET_KEY')
+assert SECRET_KEY, 'SECRET_KEY environment variable must be set' 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', True) == 'True'
 
 ALLOWED_HOSTS = [
-    '*'
+    '.herokuapp.com'
 ]
 
 
@@ -140,9 +141,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+SILENCED_SYSTEM_CHECKS = [
+    'security.W004',  # SECURE_HSTS_SECONDS
+    'security.W008',  # SECURE_SSL_REDIRECT
+]
