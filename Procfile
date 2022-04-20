@@ -1,0 +1,1 @@
+web: gunicorn ota.asgi:application -k uvicorn.workers.UvicornWorker
