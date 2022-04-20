@@ -23,6 +23,7 @@ class OtaPackage(models.Model):
     changelog_rendered = RenderedMarkdownField()
     download_url = models.URLField()
     version = models.CharField(max_length=255)
+    hash = models.TextField()
 
     class Meta:
         ordering = ("date_added",)
