@@ -1,16 +1,19 @@
 
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from rest_framework import viewsets, permissions
-from ota import serializers
+from rest_framework import viewsets, permissions, mixins
 from ota.custom_permissions import ReadOnly
 
 from ota.serializers import DeviceSerializer, OtaPackageSerializer
 from ota.models import Device, OtaPackage
 
-class DeviceViewSet(viewsets.ModelViewSet):
+
+class DeviceViewSet(mixins.CreateModelMixin,
+                    mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    viewsets.GenericViewSet):
     """
     API endpoint for Device CRUD
     """

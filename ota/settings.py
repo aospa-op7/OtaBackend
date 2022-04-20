@@ -29,6 +29,7 @@ assert SECRET_KEY, 'SECRET_KEY environment variable must be set'
 DEBUG = os.getenv('DEBUG', True) == 'True'
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     '.herokuapp.com'
 ]
 

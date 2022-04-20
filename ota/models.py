@@ -1,5 +1,4 @@
 from django.db import models
-from importlib_metadata import version
 from markdownfield.models import MarkdownField, RenderedMarkdownField
 from markdownfield.validators import VALIDATOR_STANDARD
 
