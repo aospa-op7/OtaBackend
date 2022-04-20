@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.9"
 Django = "^4.0.4"
 djangorestframework = "^3.13.1"
+django-markdownfield = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 
