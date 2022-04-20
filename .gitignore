@@ -1,3 +1,4 @@
 *.pyc
 .envrc
 staticfiles
+*.sqlite3
