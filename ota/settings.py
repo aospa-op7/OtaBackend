@@ -26,13 +26,15 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 assert SECRET_KEY, 'SECRET_KEY environment variable must be set' 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', True) == 'True'
+DEBUG = str(os.getenv('DEBUG')) == 'True'
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '.herokuapp.com'
 ]
 
+SITE_URL = os.getenv('SITE_URL')
+assert SITE_URL, 'SITE_URL environment variable must be set'
 
 # Application definition
 
@@ -153,3 +155,25 @@ SILENCED_SYSTEM_CHECKS = [
     'security.W004',  # SECURE_HSTS_SECONDS
     'security.W008',  # SECURE_SSL_REDIRECT
 ]
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        }
+    }
+}

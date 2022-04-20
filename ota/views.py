@@ -23,7 +23,7 @@ class DeviceViewSet(mixins.CreateModelMixin,
     permission_classes = [permissions.IsAdminUser | ReadOnly]
 
     @action(detail=True, methods=['get'])
-    def ota(self, request, pk=None):
+    def ota_packages(self, request, pk=None):
         """
         Gets all OTA packages for a given device
         """
@@ -32,3 +32,13 @@ class DeviceViewSet(mixins.CreateModelMixin,
             device.ota_packages, many=True, context={"request": request}
         )
         return Response(serializer.data)
+
+
+class OtaViewSet(mixins.CreateModelMixin,
+                 mixins.RetrieveModelMixin,
+                 mixins.UpdateModelMixin,
+                 mixins.DestroyModelMixin,
+                 viewsets.GenericViewSet):
+    queryset = OtaPackage.objects.all()
+    serializer_class = OtaPackageSerializer
+    permission_classes = [permissions.IsAdminUser | ReadOnly]

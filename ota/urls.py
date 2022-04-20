@@ -17,7 +17,8 @@ schema_view = get_schema_view(
 from ota import views
 
 router = routers.DefaultRouter()
-router.register(r'devices', views.DeviceViewSet)
+router.register(r'device', views.DeviceViewSet)
+router.register(r'ota', views.OtaViewSet)
 
 urlpatterns = [
     re_path(
