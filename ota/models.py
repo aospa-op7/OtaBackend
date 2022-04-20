@@ -5,14 +5,14 @@ from markdownfield.validators import VALIDATOR_STANDARD
 
 class Device(models.Model):
     name = models.CharField(max_length=255)
-    code_name = models.CharField(max_length=255)
+    code_name = models.CharField(max_length=255, primary_key=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ("name",)
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.code_name} - {self.name}"
 
 class OtaPackage(models.Model):
     device = models.ForeignKey(
