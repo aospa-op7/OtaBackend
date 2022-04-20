@@ -12,6 +12,7 @@ djangorestframework = "^3.13.1"
 django-markdownfield = "^0.10.0"
 uvicorn = "^0.17.6"
 gunicorn = "^20.1.0"
+whitenoise = "^6.0.0"
 
 [tool.poetry.dev-dependencies]
 
